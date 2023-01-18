@@ -2,6 +2,9 @@ package com.kodilla.testing.collection;
 import com.kodilla.testing.collection.OddNumbersExterminator;
 import org.junit.jupiter.api.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @DisplayName("Colection Test Suite")
 public class CollectionTestSuite {
     @BeforeEach
@@ -29,11 +32,19 @@ public class CollectionTestSuite {
     void testOddNumbersExterminatorEmptyList() {
         //Given
         OddNumbersExterminator exterminator = new OddNumbersExterminator();
+        List<Integer> numbers = new ArrayList<>();
+        numbers.add(1);
+        numbers.add(2);
+        numbers.add(3);
+        numbers.add(4);
+        numbers.add(5);
         //When
+        List<Integer> even = new ArrayList<>();
+        even.add(2);
+        even.add(4);
         //Then
-    }
-
-    }
+        Assertions.assertEquals(exterminator.exterminate(numbers), even);
+    }/*
     @DisplayName("check class behavior when the list contains even and odd numbers"
     )
     @Test
@@ -42,6 +53,5 @@ public class CollectionTestSuite {
         OddNumbersExterminator exterminator = new OddNumbersExterminator();
         //When
         //Then
-    }
+    }*/
 }
-
