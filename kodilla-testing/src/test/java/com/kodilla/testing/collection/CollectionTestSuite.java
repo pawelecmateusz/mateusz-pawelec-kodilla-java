@@ -33,6 +33,19 @@ public class CollectionTestSuite {
         //Given
         OddNumbersExterminator exterminator = new OddNumbersExterminator();
         List<Integer> numbers = new ArrayList<>();
+        //When
+        List<Integer> emptyList = new ArrayList<>();
+
+        //Then
+        Assertions.assertEquals(exterminator.exterminate(numbers), emptyList);
+    }
+    @DisplayName("check class behavior when the list contains even and odd numbers"
+    )
+    @Test
+    void testOddNumbersExterminatorNormalList() {
+        //Given
+        OddNumbersExterminator exterminator = new OddNumbersExterminator();
+        List<Integer> numbers = new ArrayList<>();
         numbers.add(1);
         numbers.add(2);
         numbers.add(3);
@@ -44,14 +57,5 @@ public class CollectionTestSuite {
         even.add(4);
         //Then
         Assertions.assertEquals(exterminator.exterminate(numbers), even);
-    }/*
-    @DisplayName("check class behavior when the list contains even and odd numbers"
-    )
-    @Test
-    void testOddNumbersExterminatorNormalList() {
-        //Given
-        OddNumbersExterminator exterminator = new OddNumbersExterminator();
-        //When
-        //Then
-    }*/
+    }
 }
