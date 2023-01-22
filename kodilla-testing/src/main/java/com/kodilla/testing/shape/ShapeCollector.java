@@ -1,5 +1,6 @@
 package com.kodilla.testing.shape;
 import java.util.ArrayList;
+import java.util.StringJoiner;
 
 
 public class ShapeCollector {
@@ -10,19 +11,19 @@ public class ShapeCollector {
         shapes.add(shape);
     }
 
-    public boolean removeFigure(Shape shape) {
-        if(shapes.remove(shape)) {
-            return true;
-        } else {
-            return false;
-        }
+    public void removeFigure(Shape shape) {
+        shapes.remove(shape);
     }
-
     public Shape getFigure(int n) {
         return shapes.get(n);
     }
 
-    public Object showFigures() {
-        return shapes;
+    public String showFigures() {
+        StringBuilder sb = new StringBuilder();
+        for (Shape shape : shapes) {
+            sb.append(shape.getShapeName());
+            sb.append("\n");
+        }
+        return sb.toString();
     }
 }
