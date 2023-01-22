@@ -38,7 +38,6 @@ public class WeatherForecastTestSuite {
     @Test
     void testCalculateForecastWithMock() {
         //Given
-        //Temperatures temperaturesMock = mock(Temperatures.class);
         Map<String, Double> temperaturesMap = new HashMap<>();
         temperaturesMap.put("Rzeszow", 25.5);
         temperaturesMap.put("Krakow", 26.2);
@@ -58,7 +57,6 @@ public class WeatherForecastTestSuite {
     @Test
     void testCalculateForecastAverage() {
         //Given
-        //Temperatures temperaturesMock = mock(Temperatures.class);
         Map<String, Double> temperaturesMap = new HashMap<>();
         temperaturesMap.put("Rzeszow", 25.5);
         temperaturesMap.put("Krakow", 26.2);
@@ -78,7 +76,6 @@ public class WeatherForecastTestSuite {
     @Test
     void testCalculateForecastMedian() {
         //Given
-        //Temperatures temperaturesMock = mock(Temperatures.class);
         Map<String, Double> temperaturesMap = new HashMap<>();
         temperaturesMap.put("Rzeszow", 25.5);
         temperaturesMap.put("Krakow", 26.2);
