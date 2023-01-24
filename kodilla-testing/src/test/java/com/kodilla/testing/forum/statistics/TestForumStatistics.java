@@ -1,5 +1,6 @@
 package com.kodilla.testing.forum.statistics;
 
+import com.kodilla.testing.library.Book;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -8,6 +9,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -15,6 +17,13 @@ public class TestForumStatistics {
 
     @Mock
     private Statistics statisticsMock;
+    private List<String> createUserNameList(int numberOfUsers) {
+        List<String> userNameList = new ArrayList<>();
+        for (int i = 0; i < numberOfUsers; i++) {
+            userNameList.add("User " + i);
+        }
+        return userNameList;
+    }
 
     @BeforeEach
     public void before() {
@@ -49,6 +58,7 @@ public class TestForumStatistics {
 
             //Then
             Assertions.assertEquals(0, forumStatistics.postsCount());
+            verify(statisticsMock, times(1)).postsCount();
         }
 
         @DisplayName("1000 posts")
@@ -61,6 +71,7 @@ public class TestForumStatistics {
 
             //Then
             Assertions.assertEquals(1000, forumStatistics.postsCount());
+            verify(statisticsMock, times(1)).postsCount();
         }
     }
 
@@ -77,6 +88,7 @@ public class TestForumStatistics {
 
             //Then
             Assertions.assertEquals(0, forumStatistics.commentsCount());
+            verify(statisticsMock, times(1)).commentsCount();
         }
 
         @DisplayName("less comments than posts")
@@ -90,6 +102,8 @@ public class TestForumStatistics {
 
             //Then
             Assertions.assertTrue(forumStatistics.commentsCount() < forumStatistics.postsCount());
+            verify(statisticsMock, times(1)).commentsCount();
+            verify(statisticsMock, times(1)).postsCount();
         }
 
         @DisplayName("more comments than posts")
@@ -103,6 +117,8 @@ public class TestForumStatistics {
 
             //Then
             Assertions.assertTrue(forumStatistics.commentsCount() > forumStatistics.postsCount());
+            verify(statisticsMock, times(1)).commentsCount();
+            verify(statisticsMock, times(1)).postsCount();
         }
     }
     @Nested
@@ -113,25 +129,28 @@ public class TestForumStatistics {
         void testZeroUsers() {
             //Given
             ForumStatistics forumStatistics = new ForumStatistics(statisticsMock);
-            List<String> usersList = new ArrayList<>();
+            when(statisticsMock.usersNames()).thenReturn(createUserNameList(0));
+
             //When
+            List<String> listOf0 = forumStatistics.usersNames();
 
             //Then
-            Assertions.assertEquals(usersList.size(), forumStatistics.usersNames().size());
+            assertEquals(0, listOf0.size());
+            verify(statisticsMock, times(1)).usersNames();
         }
         @DisplayName("100 users")
         @Test
         void test100Users() {
             //Given
             ForumStatistics forumStatistics = new ForumStatistics(statisticsMock);
-            List<String> usersList = new ArrayList<>();
-            for (int n = 1; n <= 100; n++) {
-                usersList.add("User" + n);
-            }
+            when(statisticsMock.usersNames()).thenReturn(createUserNameList(100));
+
             //When
+            List<String> listOf100 = forumStatistics.usersNames();
 
             //Then
-            Assertions.assertEquals(100,usersList.size());
+            assertEquals(100, listOf100.size());
+            verify(statisticsMock, times(1)).usersNames();
         }
     }
 }
