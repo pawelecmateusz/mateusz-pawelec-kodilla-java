@@ -6,11 +6,9 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
@@ -87,27 +85,45 @@ class BookDirectoryTestSuite {
         verify(libraryDatabaseMock, times(0)).listBooksWithCondition(anyString());
     }
     @Test
-    void testListBooksInHandsOf() {
+    void testListBooksInHandsOfZero() {
         // Given
         BookLibrary bookLibrary = new BookLibrary(libraryDatabaseMock);
         List<Book> zeroBookList = generateListOfNBooks(0);
-        List<Book> oneBookList = generateListOfNBooks(1);
-        List<Book> fiveBookList = generateListOfNBooks(5);
         when(libraryDatabaseMock.listBooksWithCondition("Zero")).thenReturn(zeroBookList);
-        when(libraryDatabaseMock.listBooksWithCondition("One")).thenReturn(oneBookList);
-        when(libraryDatabaseMock.listBooksWithCondition("Five")).thenReturn(fiveBookList);
 
         // When
         List<Book> theListOfBooksZero = bookLibrary.listBooksWithCondition("Zero");
-        List<Book> theListOfBooksOne = bookLibrary.listBooksWithCondition("One");
-        List<Book> theListOfBooksFive = bookLibrary.listBooksWithCondition("Five");
 
         // Then
         assertEquals(0, theListOfBooksZero.size());
-        assertEquals(1, theListOfBooksOne.size());
-        assertEquals(5, theListOfBooksFive.size());
         verify(libraryDatabaseMock, times(1)).listBooksWithCondition("Zero");
+    }
+    @Test
+    void testListBooksInHandsOfOne() {
+        // Given
+        BookLibrary bookLibrary = new BookLibrary(libraryDatabaseMock);
+        List<Book> oneBookList = generateListOfNBooks(1);
+        when(libraryDatabaseMock.listBooksWithCondition("One")).thenReturn(oneBookList);
+
+        // When
+        List<Book> theListOfBooksOne = bookLibrary.listBooksWithCondition("One");
+
+        // Then
+        assertEquals(1, theListOfBooksOne.size());
         verify(libraryDatabaseMock, times(1)).listBooksWithCondition("One");
+    }
+    @Test
+    void testListBooksInHandsOfFive() {
+        // Given
+        BookLibrary bookLibrary = new BookLibrary(libraryDatabaseMock);
+        List<Book> fiveBookList = generateListOfNBooks(5);
+        when(libraryDatabaseMock.listBooksWithCondition("Five")).thenReturn(fiveBookList);
+
+        // When
+        List<Book> theListOfBooksFive = bookLibrary.listBooksWithCondition("Five");
+
+        // Then
+        assertEquals(5, theListOfBooksFive.size());
         verify(libraryDatabaseMock, times(1)).listBooksWithCondition("Five");
     }
 }
