@@ -9,14 +9,10 @@ import static com.kodilla.stream.world.Continent.northAmerica;
 
 public final class World {
 
-    private final List<List<Country>> continents = new ArrayList<>();
-    public World() {
-        continents.add(europe);
-        continents.add(northAmerica);
-    }
+    private final List<List<Country>> theWorld = new ArrayList<>();
     public BigDecimal getPeopleQuantity() {
-        return continents.stream()
-                .flatMap(countries -> countries.stream())
+        return theWorld.stream()
+                .flatMap(continents -> continents.stream())
                 .map(Country::getPeopleQuantity)
                 .reduce(BigDecimal.ZERO, (sum, current) -> sum = sum.add(current));
     }

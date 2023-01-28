@@ -19,10 +19,4 @@ public final class Country {
     public String getCountryName() {
         return countryName;
     }
-
-    static Country poland = new Country("Poland", new BigDecimal("300000"));
-    static Country france = new Country("France", new BigDecimal("500000"));
-    static Country canada = new Country("Canada", new BigDecimal("200000"));
-    static Country usa = new Country("USA", new BigDecimal("800000"));
-
 }
