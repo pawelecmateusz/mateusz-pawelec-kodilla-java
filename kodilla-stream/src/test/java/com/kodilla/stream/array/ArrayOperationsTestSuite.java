@@ -12,8 +12,10 @@ public class ArrayOperationsTestSuite {
     void testGetAverage() {
         //Given
         int[] numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+
         //When
         OptionalDouble expected = OptionalDouble.of(5.5);
+
         //Then
         assertEquals(expected, ArrayOperations.getAverage(numbers));
     }
