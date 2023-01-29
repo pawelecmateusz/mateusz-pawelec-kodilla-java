@@ -12,18 +12,21 @@ public class WorldTestSuite {
     @Test
     void testGetPeopleQuantity() {
         //Given
-        List<Country> europe = new ArrayList<>();
-        europe.add(new Country("Poland", new BigDecimal("300000")));
-        List<Country> northAmerica = new ArrayList<>();
-        northAmerica.add(new Country("Canada", new BigDecimal("200000")));
-        List<List<Country>> continents = new ArrayList<>();
-        continents.add(europe);
-        continents.add(northAmerica);
-        //When
+        Country poland = new Country("Poland", new BigDecimal("300000"));
+        Country france = new Country("France", new BigDecimal("300000"));
+
+        Continent europe = new Continent();
+        europe.addCountry(poland);
+        europe.addCountry(france);
+
         World world = new World();
-        BigDecimal totalPopulation = world.getPeopleQuantity());
+        world.addContinent(europe);
+
+        //When
+        BigDecimal totalPopulation = world.getPeopleQuantity();
+        BigDecimal expectedPopulation = new BigDecimal("600000");
+
         //Then
-        BigDecimal expectedPopulation = new BigDecimal("500000");
         assertEquals(expectedPopulation, totalPopulation);
     }
 }

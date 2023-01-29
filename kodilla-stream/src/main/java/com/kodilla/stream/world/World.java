@@ -4,15 +4,19 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.kodilla.stream.world.Continent.europe;
-import static com.kodilla.stream.world.Continent.northAmerica;
+public class World {
 
-public final class World {
+    private final List<Continent> theWorld = new ArrayList<>();
 
-    private final List<List<Country>> theWorld = new ArrayList<>();
+    public void addContinent(Continent continent) {
+        theWorld.add(continent);
+    }
+    public List<Continent> getContinent() {
+        return theWorld;
+    }
     public BigDecimal getPeopleQuantity() {
         return theWorld.stream()
-                .flatMap(continents -> continents.stream())
+                .flatMap(continent -> continent.getCountries().stream())
                 .map(Country::getPeopleQuantity)
                 .reduce(BigDecimal.ZERO, (sum, current) -> sum = sum.add(current));
     }
