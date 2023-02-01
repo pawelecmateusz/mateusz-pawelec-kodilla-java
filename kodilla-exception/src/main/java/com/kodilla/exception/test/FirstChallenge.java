@@ -1,10 +1,4 @@
 package com.kodilla.exception.test;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.stream.Stream;
-
 public class FirstChallenge {
 
     public double divide(double a, double b) throws ArithmeticException {
@@ -25,6 +19,5 @@ public class FirstChallenge {
         } finally {
             System.out.println("I am gonna be here... always!");
         }
-
     }
 }
