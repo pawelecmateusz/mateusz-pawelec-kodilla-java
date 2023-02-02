@@ -16,14 +16,6 @@ public class SecondChallangeTestSuite {
         //when
         double x = 2;
         double y = 1.5;
-        try {
-            secondChallenge.probablyIWillThrowException(x, y);
-            System.out.println("Correct");
-        } catch (Exception e) {
-            System.out.println("Exception: " + e);
-        } finally {
-            System.out.println("I am gonna be here... always!");
-        }
         //then
         assertAll(
                 () -> assertThrows(Exception.class, () -> secondChallenge.probablyIWillThrowException(x, y))
@@ -37,17 +29,20 @@ public class SecondChallangeTestSuite {
         //when
         double x = 1.99;
         double y = 1.49;
-        try {
-            secondChallenge.probablyIWillThrowException(x, y);
-            System.out.println("Correct");
-        } catch (Exception e) {
-            System.out.println("Exception: " + e);
-        } finally {
-            System.out.println("I am gonna be here... always!");
-        }
         //then
         assertAll(
                 () -> assertDoesNotThrow(() -> secondChallenge.probablyIWillThrowException(x, y))
+        );
+    }
+    @DisplayName("Exception (The correct one?)")
+    @Test
+    void probablyIWillNotThrowExceptionOne() {
+        //given
+        SecondChallenge secondChallenge = new SecondChallenge();
+        //when&then
+        assertAll(
+                () -> assertThrows(Exception.class, () -> secondChallenge.probablyIWillThrowException(2.0, 1.5)),
+                () -> assertDoesNotThrow(() -> secondChallenge.probablyIWillThrowException(1.9, 2.1))
         );
     }
 }
