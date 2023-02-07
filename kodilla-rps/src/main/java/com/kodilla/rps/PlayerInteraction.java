@@ -58,7 +58,7 @@ public class PlayerInteraction {
         String p2 = cGREEN + player2.getName();
         System.out.println("\n" + jack + ": People call me Jack.. I really need that back." + cRED + " *pointing at the device*\n" + cRESET);
         sleep(2500);
-        System.out.println(p2 + ": Tell us who are you and why do you look so weird?\n" + cRESET);
+        System.out.println(p2 + ": Tell us who you are and why do you look so weird?\n" + cRESET);
         sleep(2500);
         System.out.println(jack + ": I can't, you wouldn't understand.\n" + cRESET);
         sleep(2500);
@@ -68,29 +68,29 @@ public class PlayerInteraction {
         sleep(3000);
         System.out.println(p2 + ": Wait, what?! Where do you come from then? I mean 'when'.\n" + cRESET);
         sleep(3500);
-        System.out.println(p1 + ": Who cares " + p2 + "! We'll just use it ourselves! We can get rich with it!\n" + cRESET);
+        System.out.println(p1 + ": Who cares, " + p2 + "! We'll just use it ourselves! We can get rich with it!\n" + cRESET);
         sleep(4000);
         System.out.println(jack + ": No, don't! You can't! Okay.. listen.. I'm in a hurry here and I need the device.\n" + cRESET);
         sleep(4000);
         System.out.println(p1 + ": We can play for it. Do you know the game called 'Rock, Paper, Scissors'? If we win we'll keep it.\n" + cRESET);
         sleep(4000);
-        System.out.println(p2 + ": .. but if we lose, you'll at least tell us something that will make us rich.\n" + cRESET);
+        System.out.println(p2 + ": ..but if we lose, you'll at least tell us something that will make us rich.\n" + cRESET);
         sleep(4000);
         System.out.println(jack + ": Deal. Let's play then.\n" + cRESET);
         sleep(3000);
         System.out.println(p1 + " to " + p2 + ": I'll play with him!\n" + cRESET);
         sleep(3000);
-        thegame();
+        theGame();
     }
     public static void skippedIntro() throws InterruptedException {
         System.out.print(cYELLOW + "\nType your name: " + cRESET);
         player1.setName(sc.next());
-        System.out.println(cYELLOW + "Hi " + player1.getName() + "!");
+        System.out.println(jack + ": Hi " + player1.getName() + cCYAN + ", I'll be your opponent.\n" + cRESET);
         sleep(500);
-        System.out.println(cYELLOW + "Let's Play 'Rock, Paper, Scissors!");
+        System.out.println(cYELLOW + "Let's Play '" + rock + cYELLOW + ", " + paper + cYELLOW + ", " + scissors + cYELLOW + "'!");
         sleep(500);
         System.out.print(cYELLOW + "\nHERE ARE SOME ");
-        thegame();
+        theGame();
     }
     static String rock = cPURPLE + "Rock";
     static String paper = cPURPLE + "Paper";
@@ -106,7 +106,6 @@ public class PlayerInteraction {
         sleep(500);
         System.out.println(scissors + cRED + " beat " + paper);
         sleep(500);
-        return;
     }
     public static void controls() throws InterruptedException {
         System.out.println(cYELLOW + "\nCONTROLS:");
@@ -119,7 +118,7 @@ public class PlayerInteraction {
         System.out.println(cRED + "Type 'r' to see the rules\n" + cRESET);
         sleep(500);
     }
-    public static void thegame() throws InterruptedException {
+    public static void theGame() throws InterruptedException {
         rules();
         controls();
         String p1 = cGREEN + player1.getName() + cRESET;
@@ -188,19 +187,19 @@ public class PlayerInteraction {
                     jackPoints += 1;
                 }
             }
-            System.out.println(p1 + cRED + " has " + cPURPLE + playerPoints + cRED + " point/s" + " and " + jack + cRED + " has " + cPURPLE + jackPoints + cRED + " point/s");
+            System.out.println(p1 + cRED + " has " + cPURPLE + playerPoints + cRED + " point/s" + " and " + jack + cRED + " has " + cPURPLE + jackPoints + cRED + " point/s\n");
 
             if (parseWins == playerPoints) {
-                System.out.println("\n" + p1 + cPURPLE + " wins!\n");
+                System.out.println(p1 + cPURPLE + " wins!\n");
                 playerwins();
             } else if (parseWins == jackPoints) {
-                System.out.println("\n" + jack + cPURPLE + " wins!\n");
+                System.out.println(jack + cPURPLE + " wins!\n");
                 jackwins();
             }
 
             while (!(parseWins == playerPoints) || (parseWins == jackPoints)) {
 
-                System.out.println(cYELLOW + "\n(c - continue, n - new game, x - quit game, r - rules)" + cRESET);
+                System.out.println(cYELLOW + "(c - continue, n - new game, x - quit game, r - rules)" + cRESET);
                 game = sc.next();
                 if (game.equals("c") || game.equals("n") || game.equals("x") || game.equals("r")) {
                     if (game.equals("c")) {
@@ -209,13 +208,34 @@ public class PlayerInteraction {
                     } else if (game.equals("n")) {
                         System.out.print(cRED + "Are you sure you want to end the current game? (y/n) \n" + cRESET);
                         confirm = sc.next();
+                        System.out.println(" ");
                         if (confirm.equals("y")) {
-                            System.out.println(cYELLOW + "Good luck this time!" + p1 + cRESET);
-                            thegame();
+                            if (!player2.getName().isEmpty()) {
+                                System.out.println("Type 's' for a Story Mode");
+                                System.out.println("Type 'f' for a Free Mode");
+                                confirm = sc.next();
+                                if (confirm.equals("s") || confirm.equals("f")) {
+                                    if (confirm.equals("s")) {
+                                        System.out.print(cYELLOW + "Type Player 1's name to start: " + cRESET);
+                                        player1.setName(sc.next());
+                                        System.out.println(" ");
+                                        theGame();
+                                    } else if (confirm.equals("f")) {
+                                        player2.setName("");
+                                        skippedIntro();
+                                    }
+                                } else {
+                                    System.out.println(cRED + game + " is incorrect! Try again." + cRESET);
+                                }
+                            } else {
+                                System.out.println(jack + ": Good luck this time " + p1 + cCYAN + "! " + cRESET + "\n");
+                                theGame();
+                            }
                         }
                     } else if (game.equals("x")) {
                         System.out.print(cRED + "Are you sure you want to quit? (y/n) \n" + cRESET);
                         confirm = sc.next();
+                        System.out.println(" ");
                         if (confirm.equals("y")) {
                             System.out.println(cYELLOW + "Thanks for playing, bye bye!" + cRESET);
                             System.exit(0);
