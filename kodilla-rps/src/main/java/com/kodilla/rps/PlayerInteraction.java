@@ -117,17 +117,18 @@ public class PlayerInteraction {
         sleep(500);
         System.out.println(paper + tcRED + " beats " + rock);
         sleep(500);
-        System.out.println(scissors + tcRED + " beat " + paper);
+        System.out.println(scissors + tcRED + " beat " + paper + "\n");
         sleep(500);
     }
     public static void showControls() throws InterruptedException {
-        System.out.println(tcYELLOW + "\nCONTROLS:");
+        System.out.println(tcYELLOW + "CONTROLS:");
         System.out.println(tcRED + "For " + rock + tcRED + " press 1" + cRESET);
         System.out.println(tcRED + "For " + paper + tcRED + " press 2" + cRESET);
         System.out.println(tcRED + "For " + scissors + tcRED + " press 3\n" + cRESET);
 
         sleep(500);
     }
+
     public static void playTheGame() throws InterruptedException {
         showRules();
         showControls();
@@ -211,6 +212,7 @@ public class PlayerInteraction {
 
                 System.out.println(tcYELLOW + "(c - continue, n - new game, x - quit game, r - rules)" + cRESET);
                 controlKey = sc.next();
+                System.out.println(" ");
                 if (controlKey.equals("c") || controlKey.equals("n") || controlKey.equals("x") || controlKey.equals("r")) {
                     if (controlKey.equals("c")) {
                         System.out.println(tcYELLOW + "\n~ NEXT ROUND ~" + cRESET);
@@ -251,13 +253,18 @@ public class PlayerInteraction {
                         }
                     } else if (controlKey.equals("x")) {
                         System.out.print(tcRED + "Are you sure you want to quit? (y/n) \n" + cRESET);
-                        confirm = sc.next();
-                        System.out.println(" ");
-                        if (confirm.equals("y")) {
-                            System.out.println(tcYELLOW + "Thanks for playing, bye bye!" + cRESET);
-                            System.exit(0);
-                        }//dodaź confirm "n"
-                    } else if (controlKey.equals("r")) {
+                        while (true) {
+                            confirm = sc.next();
+                            System.out.println(" ");
+                            if (confirm.equals("y")) {
+                                System.out.println(tcYELLOW + "Thanks for playing, bye bye!" + cRESET);
+                                System.exit(0);
+                            } else if (confirm.equals("n")) {
+                                break;
+                            }
+                            System.out.println(tcRED + "sure? not sure? hmm.. (y/n)" + cRESET);
+                        }
+                    }else if (controlKey.equals("r")) {
                         showRules();
                     }
                 } else {

@@ -1,6 +1,5 @@
 package com.kodilla.rps;
 
-import static com.kodilla.rps.Colors.*;
 import static com.kodilla.rps.PlayerInteraction.*;
 
 public class IntegerTranslator {
