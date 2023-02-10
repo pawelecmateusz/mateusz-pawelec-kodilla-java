@@ -1,9 +1,9 @@
 package com.kodilla.rps;
 
-public class rpsSign {
+public class RPSsign {
     private String signName;
 
-    public rpsSign(String signName) {
+    public RPSsign(String signName) {
         this.signName = signName;
     }
 

@@ -13,9 +13,9 @@ public class PlayerInteraction {
     static Player player2 = new Player("");
     static Player jumpingJack = new Player(tcCYAN + "Jack");
     static String jack = jumpingJack.getName();
-    static rpsSign rockSign = new rpsSign(tcPURPLE + "Rock" + cRESET);
-    static rpsSign paperSign = new rpsSign(tcPURPLE + "Paper" + cRESET);
-    static rpsSign scissorsSign = new rpsSign(tcPURPLE + "Scissors" + cRESET);
+    static RPSsign rockSign = new RPSsign(tcPURPLE + "Rock" + cRESET);
+    static RPSsign paperSign = new RPSsign(tcPURPLE + "Paper" + cRESET);
+    static RPSsign scissorsSign = new RPSsign(tcPURPLE + "Scissors" + cRESET);
     static Scanner sc = new Scanner(System.in);
 
     public static void tellStory01() {
