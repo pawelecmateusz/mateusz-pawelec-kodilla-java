@@ -1,7 +1,7 @@
 package com.kodilla.rps;
 
 import static com.kodilla.rps.PlayerInteraction.*;
-import static com.kodilla.rps.ContinueOrSkip.*;
+import static com.kodilla.rps.ContinueStory.*;
 import static com.kodilla.rps.Colors.*;
 
 public class RpsRunner {
