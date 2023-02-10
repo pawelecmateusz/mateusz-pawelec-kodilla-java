@@ -7,25 +7,43 @@ import static com.kodilla.rps.Colors.*;
 public class RpsRunner {
 
     public static void main(String[] args) throws InterruptedException {
+        //main menu
+        System.out.println(bgcBLACK + "                             " + cRESET);
+        System.out.println(bgcBLACK + tcYELLOW + " * " + rock + bgcBLACK + tcYELLOW + " * " + paper + bgcBLACK + tcYELLOW + " * " + scissors + bgcBLACK + tcYELLOW + " * " + cRESET);
+        System.out.println(bgcBLACK + "                             " + cRESET);
+        System.out.println(bgcBLACK + tcCYAN + "  'Story Mode' - 2 players   " + cRESET);
+        System.out.println(bgcBLACK + tcGREEN + "   'Free Mode' - 1 player    " + cRESET);
+        System.out.println(bgcBLACK + "                             " + cRESET);
+        System.out.println("\n" + tcRED + "*** type 's' to play the " + tcCYAN + "'Story Mode'" + tcRED + " or type 'f' to play the " + tcGREEN + "'Free Mode'" + tcRED + " ***\n" + cRESET);
 
-       //the story
-        System.out.println(cCYAN + "'Story Mode'" + cRESET);
+        while (true) {
+            String modeChoice = sc.nextLine();
+            System.out.println(" ");
+            if (modeChoice.equals("s")) {
+                break;
+            }else if (modeChoice.equals("f")) {
+                skipIntro();
+            } else {
+                System.out.println(tcRED + "Pick your game mode :)");
+            }
+        }
+
+        //the story
+        tellStory01();
         continueOrSkip();
-        intro1();
+        tellStory02();
         continueOrSkip();
-        intro2();
+        tellStory03();
         continueOrSkip();
-        intro3();
+        tellStory04();
         continueOrSkip();
-        intro4();
-        continueOrSkip();
-        intro5();
+        tellStory05();
         continueOrSkip();
 
         //players set their names
-        introduction();
+        introducePlayers();
 
-        //the actual game
-        theGame();
+        //the actual game where the magic happens
+        playTheGame();
     }
 }

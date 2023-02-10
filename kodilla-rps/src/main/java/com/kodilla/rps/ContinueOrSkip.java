@@ -5,14 +5,13 @@ import static com.kodilla.rps.PlayerInteraction.*;
 
 public class ContinueOrSkip {
     public static void continueOrSkip() throws InterruptedException {
+        System.out.print(tcRED + "\n*** press enter to continue ***\n" + cRESET);
         while (true) {
-            System.out.print(cRED + "\n*** press enter to continue with the " + cCYAN + "'Story Mode'" + cRED + " or type 'f' to start a " + cGREEN + "'Free Mode'" + cRED + " ***\n" + cRESET);
             String keyMap = sc.nextLine();
-            if (keyMap.equals("f")) {
-                skippedIntro();
+            if (keyMap.equals("")) {
                 break;
-            } else if (keyMap.isEmpty()) {
-                break;
+            } else {
+                System.out.println("wrong input");
             }
         }
     }

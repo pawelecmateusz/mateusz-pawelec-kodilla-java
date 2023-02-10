@@ -1,31 +1,32 @@
 package com.kodilla.rps;
 
 import static com.kodilla.rps.Colors.*;
+import static com.kodilla.rps.PlayerInteraction.*;
 
 public class IntegerTranslator {
-    public static String jackString (int jackMove) {
+    public static String translateJackMove(int jackMove) {
         String jackString = "";
         if (jackMove == 1) {
-            jackString = cPURPLE + "rock";
+            jackString = rock;
         }
         if (jackMove == 2) {
-            jackString = cPURPLE + "paper";
+            jackString = paper;
         }
         if (jackMove == 3) {
-            jackString = cPURPLE + "scissors";
+            jackString = scissors;
         }
         return jackString;
     }
-    public static String playerString (String playerMove) {
+    public static String translatePlayerMove(String playerMove) {
         String playerString = "";
         if (playerMove.equals("1")) {
-            playerString = cPURPLE + "rock";
+            playerString = rock;
         }
         if (playerMove.equals("2")) {
-            playerString = cPURPLE + "paper";
+            playerString = paper;
         }
         if (playerMove.equals("3")) {
-            playerString = cPURPLE + "scissors";
+            playerString = scissors;
         }
         return playerString;
     }
