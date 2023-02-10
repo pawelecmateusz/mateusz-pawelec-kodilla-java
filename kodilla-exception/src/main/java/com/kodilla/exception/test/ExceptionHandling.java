@@ -1,6 +1,9 @@
 package com.kodilla.exception.test;
 
+import com.kodilla.exception.nullpointer.MessageNotSentException;
+
 import java.io.IOException;
+import java.security.KeyStore;
 
 public class ExceptionHandling {
 
