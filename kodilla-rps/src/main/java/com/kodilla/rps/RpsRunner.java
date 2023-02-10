@@ -30,15 +30,15 @@ public class RpsRunner {
 
         //the story
         tellStory01();
-        continueOrSkip();
+        continueStory();
         tellStory02();
-        continueOrSkip();
+        continueStory();
         tellStory03();
-        continueOrSkip();
+        continueStory();
         tellStory04();
-        continueOrSkip();
+        continueStory();
         tellStory05();
-        continueOrSkip();
+        continueStory();
 
         //players set their names
         introducePlayers();
