@@ -1,35 +1,60 @@
 package com.kodilla.rps;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static com.kodilla.rps.PlayerInteraction.playTheGame;
-import static com.kodilla.rps.WinLoseScenarios.showPlayerWinScenario;
+import static com.kodilla.rps.Colors.*;
+import static com.kodilla.rps.EndgameScenarios.isGameFinished;
+import static com.kodilla.rps.MoveToSign.getMoveSign;
+import static com.kodilla.rps.PointsCalculator.calculatePoints;
+import static com.kodilla.rps.RpsRunner.*;
+
 
 public class RpsTestSuite {
+    @DisplayName("Test if move number gives(or not) the desired sign")
     @Test
-    void testPlayer() {
+    void testPlayerMove() {
         //given
-        Player player = new Player("");
+        String rock = fcBrightPURPLE + "Rock" + cRESET;
+        String paper = fcBrightPURPLE + "Paper" + cRESET;
         //when
-        player.setName("Jack");
+        Value move = new Value(1);
         //then
-        Assertions.assertEquals("Jack", player.getName());
+        Assertions.assertEquals(getMoveSign(move), rock);
+        Assertions.assertNotEquals(getMoveSign(move), paper);
     }
+
+    @DisplayName("Test player win")
     @Test
-    void testWin() throws InterruptedException {
+    void testPlayerWin() throws InterruptedException {
         //given
-        PlayerInteraction playerInteraction = new PlayerInteraction();
 
         //when
-        String numberOfWins = "3";
-        int parseWins = Integer.parseInt(numberOfWins);
-        int playerPoints = 3;
-        int jackPoints = 2;
+        player1.setName("M");
+        player2.setName("M");
+        p1 = player1.getName();
+        Value wins = new Value(5);
+        Value playerPoints = new Value(5);
+        Value jackPoints = new Value(2);
 
         //then
-        Assertions.assertEquals(parseWins, playerPoints);
-        Assertions.assertNotEquals(parseWins, jackPoints);
+        Assertions.assertTrue(isGameFinished(wins, playerPoints, jackPoints));
+    }
+    @DisplayName("Test CPU win")
+    @Test
+    void testCpuWin() throws InterruptedException {
+        //given
 
+        //when
+        player1.setName("M");
+        player2.setName("M");
+        p1 = player1.getName();
+        Value wins = new Value(5);
+        Value playerPoints = new Value(2);
+        Value jackPoints = new Value(5);
+
+        //then
+        Assertions.assertTrue(isGameFinished(wins, playerPoints, jackPoints));
     }
 }
