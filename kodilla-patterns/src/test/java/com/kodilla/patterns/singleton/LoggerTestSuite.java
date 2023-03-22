@@ -14,7 +14,5 @@ public class LoggerTestSuite {
         logger.log("LOGGER");
         //Then
         Assertions.assertEquals("LOGGER", logger.getLastLog());
-
     }
-
 }
