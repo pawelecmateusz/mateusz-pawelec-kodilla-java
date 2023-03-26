@@ -2,9 +2,9 @@ package com.kodilla.good.patterns.challenges;
 
 public class OrderProcessor {
 
-    private OrderInformationService informationService;
-    private OrderService orderService;
-    private DefaultOrderRepository defaultOrderRepository;
+    private final OrderInformationService informationService;
+    private final OrderService orderService;
+    private final DefaultOrderRepository defaultOrderRepository;
 
     public OrderProcessor(final OrderInformationService informationService,
                           final OrderService orderService,
@@ -19,6 +19,7 @@ public class OrderProcessor {
 
         if (isBought) {
             informationService.inform(orderRequest.getUser());
+            defaultOrderRepository.createOrder(orderRequest.getUser(), orderRequest.getProduct());
             return new OrderDto(orderRequest.getProduct(), orderRequest.getUser(), true);
         } else {
             return new OrderDto(orderRequest.getProduct(), orderRequest.getUser(), false);

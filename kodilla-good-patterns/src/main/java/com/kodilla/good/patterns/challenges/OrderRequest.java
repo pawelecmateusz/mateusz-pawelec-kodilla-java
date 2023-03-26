@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 
 public class OrderRequest {
     private Product product;
-
     private User user;
     private LocalDateTime orderDate;
 

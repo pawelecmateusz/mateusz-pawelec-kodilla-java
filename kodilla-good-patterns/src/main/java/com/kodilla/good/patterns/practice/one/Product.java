@@ -1,4 +1,4 @@
-package com.kodilla.good.patterns.practiceOne;
+package com.kodilla.good.patterns.practice.one;
 
 public class Product {
     private String name;
