@@ -44,11 +44,7 @@ public class InvoiceDaoTestSuite {
         invoice.setItems(items);
 
         //When
-        productDao.save(shoes);
-        productDao.save(bike);
         invoiceDao.save(invoice);
-        itemDao.save(item1);
-        itemDao.save(item2);
 
         //Then
         int invoiceId = invoice.getId();
@@ -62,8 +58,8 @@ public class InvoiceDaoTestSuite {
         assertTrue(readItem.isPresent());
 
         //CleanUp
-        invoiceDao.deleteAll();
-        productDao.deleteAll();
         itemDao.deleteAll();
+        productDao.deleteAll();
+        invoiceDao.deleteAll();
     }
 }
