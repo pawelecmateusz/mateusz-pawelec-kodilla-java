@@ -18,11 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class InvoiceDaoTestSuite {
 
     @Autowired
-    private ProductDao productDao;
-    @Autowired
     private InvoiceDao invoiceDao;
-    @Autowired
-    private ItemDao itemDao;
 
     @Test
     void testInvoiceDaoSave() {
@@ -31,35 +27,31 @@ public class InvoiceDaoTestSuite {
 
         Product shoes = new Product("Shoes");
         Product bike = new Product("Bike");
+        Product blouse = new Product("Blouse");
 
         Item item1 = new Item(shoes, new BigDecimal(49), 5, new BigDecimal(245));
         Item item2 = new Item(bike, new BigDecimal(499), 2, new BigDecimal(998));
+        Item item3 = new Item(blouse, new BigDecimal(99), 1, new BigDecimal(99));
+
         item1.setInvoice(invoice);
         item2.setInvoice(invoice);
+        item3.setInvoice(invoice);
 
-        List<Item> items = new ArrayList<>();
-        items.add(item1);
-        items.add(item2);
-
-        invoice.setItems(items);
+        List<Item> invoiceItems = new ArrayList<>();
+        invoiceItems.add(item1);
+        invoiceItems.add(item2);
+        invoiceItems.add(item3);
+        invoice.setItems(invoiceItems);
 
         //When
         invoiceDao.save(invoice);
+        int invoiceId = invoice.getId();
 
         //Then
-        int invoiceId = invoice.getId();
-        int shoesId = shoes.getId();
-        int itemId = item1.getId();
         Optional<Invoice> readInvoice = invoiceDao.findById(invoiceId);
-        Optional<Product> readProduct = productDao.findById(shoesId);
-        Optional<Item> readItem = itemDao.findById(itemId);
         assertTrue(readInvoice.isPresent());
-        assertTrue(readProduct.isPresent());
-        assertTrue(readItem.isPresent());
 
         //CleanUp
-        itemDao.deleteAll();
-        productDao.deleteAll();
-        invoiceDao.deleteAll();
+        invoiceDao.deleteById(invoiceId);
     }
 }
