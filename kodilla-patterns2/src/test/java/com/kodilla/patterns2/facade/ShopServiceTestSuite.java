@@ -5,6 +5,8 @@ import com.kodilla.patterns2.facade.api.OrderDto;
 import com.kodilla.patterns2.facade.api.OrderFacade;
 import com.kodilla.patterns2.facade.api.OrderProcessingException;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -12,6 +14,10 @@ import java.math.BigDecimal;
 
 @SpringBootTest
 class ShopServiceTestSuite {
+
+    private static final Logger LOGGER =
+            LoggerFactory.getLogger(ShopServiceTestSuite.class);
+
     @Autowired
     private OrderFacade orderFacade;
     @Autowired
@@ -60,6 +66,7 @@ class ShopServiceTestSuite {
             System.out.println("Access denied. User is not authenticated.");
         }
     }
+
     @Test
     public void testShopFacade() {
         OrderDto order = new OrderDto();
